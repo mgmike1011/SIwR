@@ -32,7 +32,7 @@ class LocAgent:
         # direction of agent as a string from set {'N', 'E', 'W', 'S'}
         self.dir = 'N'
         # map where breeze was perceived
-        self.breeze = np.zeros([size, size], dtype=bool)
+        self.breeze = np.zeros([size, size], dtype=np.bool)
         # set of visited locations
         self.vis = set()
         # set of frontier locations, i.e. not visited locations adjacent to visited ones
@@ -60,39 +60,15 @@ class LocAgent:
         # map from frontier locations to probability that they contain pit
         self.front_to_prob = {}
         for cur_loc in self.front:
-            # set of frontier locations minus current query location
-            front_other = self.front.copy()
-            front_other.remove(cur_loc)
-
-            # unnormalized probabilities of query containing pit (q) given known (k) and breeze (b)
-            P_q_giv_k_b = 0
-            # unnormalized probabilities of query not containing pit (nq) given known (k) and breeze (b)
-            P_nq_giv_k_b = 0
-            # all combinations of pits for all possible numbers of pits
-            for num_pits in range(len(front_other) + 1):
-                for cur_pits in combinations(front_other, num_pits):
-                    #consider whether query contains pit and then add it to set of pits
-                    pits_q = set(cur_pits).union({cur_loc})
-                    pits_nq = set(cur_pits)
-
-                    # probability of breeze givern known, query and frontier
-                    P_b_giv_k_q_f = self.check_breeze(pits_q, self.vis)
-                    P_b_giv_k_nq_f = self.check_breeze(pits_nq, self.vis)
-                    # multiply by prior probability of given pit configuration
-                    P_q_giv_k_b += P_b_giv_k_q_f * \
-                                   self.pit_prob ** len(pits_q) * \
-                                   (1 - self.pit_prob) ** (len(self.front) - len(pits_q))
-                    P_nq_giv_k_b += P_b_giv_k_nq_f * \
-                                    self.pit_prob ** len(pits_nq) * \
-                                    (1 - self.pit_prob) ** (len(self.front) - len(pits_nq))
-
-            print('sum = ', (P_q_giv_k_b + P_nq_giv_k_b))
-            # normalize, so sum is equal to 1
-            P_q_giv_k_b_norm = P_q_giv_k_b / (P_q_giv_k_b + P_nq_giv_k_b)
+            # compute using brute force
             P_q_giv_k_b_norm_comp = self.prob_bf(cur_loc, self.vis)
-            if abs(P_q_giv_k_b_norm - P_q_giv_k_b_norm_comp) > 1e-9:
-                print('P_q_giv_k_b_norm = %f, P_q_giv_k_b_norm_comp = %f' % (P_q_giv_k_b_norm, P_q_giv_k_b_norm_comp))
-            self.front_to_prob[cur_loc] = P_q_giv_k_b_norm
+
+            # compute using decomposition
+            # TODO PUT YOUR CODE HERE
+
+            # ------------------
+
+            self.front_to_prob[cur_loc] = P_q_giv_k_b_norm_comp
 
         # find all locations with the lowest probability
         best_dests = [self.loc]
@@ -112,14 +88,9 @@ class LocAgent:
         shortest_dest = self.loc
         shortest_dest_cmds_len = 1e6
         shortest_dest_cmds = ['forward']
-        for dest in best_dests:
-            # find path to location
-            cmds = self.path_to_loc(dest)
-            # if path shorter than the shortest so far
-            if len(cmds) < shortest_dest_cmds_len:
-                shortest_dest = dest
-                shortest_dest_cmds_len = len(cmds)
-                shortest_dest_cmds = cmds
+        # TODO PUT YOUR CODE HERE
+
+        # ------------------
 
         # return command
         next_cmd = shortest_dest_cmds[0]
@@ -141,7 +112,7 @@ class LocAgent:
             return 'forward'
 
     def get_posterior(self) -> np.array:
-        P = np.zeros((self.size, self.size), dtype=float)
+        P = np.zeros((self.size, self.size), dtype=np.float)
         for loc, prob in self.front_to_prob.items():
             print(loc, prob)
             P[loc[0], loc[1]] = prob
@@ -152,7 +123,7 @@ class LocAgent:
     def check_breeze(self,
                      pits: Union[Sequence[Tuple[int, int]], Set[Tuple[int, int]]],
                      vis: Union[Sequence[Tuple[int, int]], Set[Tuple[int, int]]]) -> float:
-        breeze_comp = np.zeros([self.size, self.size], dtype=bool)
+        breeze_comp = np.zeros([self.size, self.size], dtype=np.bool)
         for pit in pits:
             for nh_dir in ['N', 'E', 'W', 'S']:
                 # nh, _ = self.forward(pit, nh_dir)
@@ -252,7 +223,7 @@ class LocAgent:
         # all combinations of pits for all possible numbers of pits
         for num_pits in range(len(unknown) + 1):
             for cur_pits in combinations(unknown, num_pits):
-                # consider whether query contains pit and then add it to set of pits
+                # if query contains pit then add it to set of pits
                 pits_q = set(cur_pits).union({query})
                 pits_nq = set(cur_pits)
 
@@ -267,7 +238,6 @@ class LocAgent:
                                 self.pit_prob ** len(pits_nq) * \
                                 (1 - self.pit_prob) ** (len(all_loc) - len(pits_nq))
         # normalize, so sum is equal to 1
-        s=(P_q_giv_k_b + P_nq_giv_k_b)
-        P_q_giv_k_b = P_q_giv_k_b / s
-        P_nq_giv_k_b = P_nq_giv_k_b / s
+        P_q_giv_k_b = P_q_giv_k_b / (P_q_giv_k_b + P_nq_giv_k_b)
+
         return P_q_giv_k_b

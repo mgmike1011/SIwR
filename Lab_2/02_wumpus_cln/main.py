@@ -246,7 +246,7 @@ def main():
         percept = env.getPercept()
         action = agent(percept)
         # get what the agent thinks of the environment
-        P = agent.get_posterior()
+        P = agent.getPosterior()
 
         print('Percept: ', percept)
         print('Action ', action)

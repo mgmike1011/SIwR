@@ -1,0 +1,14 @@
+1. Zmienne losowe - występowanie dołów i
+2. 1 - bryzy są tylko tam gdzie sa doły
+3. Rozkład zmiennych jest równy rozkładowi zmiennych opisujących doły. Można go rozłożyć jako iloczyn poszczególnych zmiennych
+4. Chcemy obliczyć prawodpodobieństwo jednego z pól
+    Mamy Zapisać prawdopodobieństwo Q mając known i breeze
+
+
+
+Czy stała α′ będzie dla każdej lokacji taka sama? Czy to zmienia coś w kwestii ilości potrzebnych obliczeń, jeśli naszym celem jest jedynie wybór lokacji z najmniejszym prawdopodobieństwem?
+Dla każdego querry będzie inna
+
+W środę wejściówka
+Przeczytać sieci Beysowskie
+Storna 508 - zadania

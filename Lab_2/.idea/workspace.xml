@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="be354004-dad7-4df1-a9e9-929f4c7de807" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Lab_1/02_wumpus_cln/Odp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab_1/02_wumpus_cln/Zad_dod.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab_1/02_wumpus_cln/agents/prob.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_1/02_wumpus_cln/agents/prob.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab_1/02_wumpus_cln/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_1/02_wumpus_cln/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab_1/Zad_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_1/Zad_1.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2Nh9ofSYF4DtnMYahaOdztkRA7P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/milosz/RiSA_1/SIwR/Lab_1",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be354004-dad7-4df1-a9e9-929f4c7de807" name="Changes" comment="" />
+      <created>1680105622172</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680105622172</updated>
+      <workItem from="1680105623314" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
